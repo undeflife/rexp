@@ -36,7 +36,9 @@ impl Value {
             Value::Error(e) => e.clone(),
             Value::String(t) => t.clone(),
             Value::Number(f) => format!("{}", f),
-            Value::Date(f) => oadate::from_oadate(*f).format("%Y/%m/%d").to_string(),
+            Value::Date(f) => oadate::from_oadate(*f)
+                .format(&oadate::default_format())
+                .unwrap(),
             _ => String::from(""),
         }
     }
